@@ -1,7 +1,11 @@
 <nav class="text-white top-0 absolute z-50 w-full flex justify-end gap-x-4 px-2 py-3 bg-slate-900 shadow-md">
 
   @for(link of navLinks; track link.path) {
-  <a routerLink="{{link.path}}" class="hover:underline">
+  <a
+    class="hover:underline"
+    routerLink="{{link.path}}"
+    routerLinkActive="text-blue-500 underline"
+  >
     {{link.name}}
   </a>
   }

@@ -2,7 +2,7 @@ import { links } from '@/core/constants/links';
 import { ILink } from '@/core/models/Ilink';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
