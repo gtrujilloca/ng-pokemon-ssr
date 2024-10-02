@@ -1,0 +1,18 @@
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+  @if (isLoading() === true) {
+  @for (pokemon of pokemons(); track pokemon.id) {
+  <app-card-skeleton />
+  }
+  } @else {
+  @for (pokemon of pokemons(); track pokemon.id) {
+  <app-pokemon-card [pokemon]="pokemon"/>
+  }
+  }
+  <!-- @empty {
+    <article class="col-span-5 text-white border-white h-28 flex justify-center items-center">
+      There are no pokemons yet
+    </article>
+  } -->
+
+</section>

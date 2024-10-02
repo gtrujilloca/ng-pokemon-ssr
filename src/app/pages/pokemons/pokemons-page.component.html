@@ -1,0 +1,12 @@
+<h1 class="text-3xl">Pokemon list</h1>
+<h2 class="text-xl">Current page</h2>
+
+<hr class="my-2">
+
+<app-pokemon-list [isLoading]="isLoading()" [pokemons]="pokemons()"></app-pokemon-list>
+
+<div class="flex justify-between">
+
+  <button class="mt-2" (click)="loadPOkemons(-1)">Prev</button>
+  <button class="mt-2" (click)="loadPOkemons(+1)">Next</button>
+</div>
