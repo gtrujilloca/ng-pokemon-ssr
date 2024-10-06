@@ -54,13 +54,13 @@ export default class PokemonsPageComponent implements OnInit {
     this.metaData.updateTag({ name: 'og:title', content: `This is ${this._title} page pokemon` });
     this.metaData.updateTag({ name: 'keyboards', content: `Pokemon, pricing, pokemon-ssr` });
 
-    this.loadPOkemons(+this.page());
+    this.loadPOkemons();
   }
 
   loadPOkemons(page: number = 0): void {
     this.isLoading.set(true);
     const nextPage = +this.page() + page;
-    this._pokemonSrv.getPokemons(nextPage, 20)
+    this._pokemonSrv.getPokemons(nextPage)
       .pipe(
         tap(() => this.router.navigate([], { queryParams: { page: nextPage } }) ),
         tap(() => {

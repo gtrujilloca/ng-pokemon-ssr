@@ -1,4 +1,3 @@
-import { Pokemon } from '@/core/models/pokemon/pokemon';
 import { CommonModule } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { CardSkeletonComponent } from "../card-skeleton/card-skeleton.component";
