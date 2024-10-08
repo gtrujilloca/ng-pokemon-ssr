@@ -6,14 +6,21 @@ import { getPokemons } from '@/core/mocks/pokemons';
 import { PokemonService } from '@/infrastructure/driven-adapters/pokemon.service';
 import { PokemonGateway } from '@/core/models/pokemon/gateway/pokemon-gateway';
 import { PokemonUsecase } from '@/core/models/pokemon/usecase/pokemon-usecase';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-pokemons-page',
+  styles: `
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  `,
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     PokemonListComponent
   ],
   providers: [
@@ -33,10 +40,10 @@ export default class PokemonsPageComponent implements OnInit {
 
   private _pokemonSrv = inject(PokemonUsecase);
 
-  page = input('1', {
-    transform: (value: string) => {
+  page = input(1, {
+    transform: (value: number) => {
       const pageValue = isNaN(+value) ? 1 : +value;
-      return `${Math.max(1, pageValue)}`;
+      return Math.max(1, pageValue);
     },
   });
 
@@ -44,25 +51,23 @@ export default class PokemonsPageComponent implements OnInit {
   pokemons = signal(getPokemons());
   router = inject(Router);
 
-  logEffect = effect(() => {
-    console.log('page', this.page());
-  })
+  pokemonLoader = effect(() => {
+    this.loadPOkemons(this.page());
+  }, { allowSignalWrites: true });
+
+
 
   ngOnInit(): void {
     this.seoTitle.setTitle(this._title);
     this.metaData.updateTag({ name: 'description', content: `${this._title} page` });
     this.metaData.updateTag({ name: 'og:title', content: `This is ${this._title} page pokemon` });
     this.metaData.updateTag({ name: 'keyboards', content: `Pokemon, pricing, pokemon-ssr` });
-
-    this.loadPOkemons();
   }
 
   loadPOkemons(page: number = 0): void {
     this.isLoading.set(true);
-    const nextPage = +this.page() + page;
-    this._pokemonSrv.getPokemons(nextPage)
+    this._pokemonSrv.getPokemons(page)
       .pipe(
-        tap(() => this.router.navigate([], { queryParams: { page: nextPage } }) ),
         tap(() => {
           this.seoTitle.setTitle(`Pokémons SSR - Page ${this.page()}`)
           this.isLoading.set(false);
@@ -73,8 +78,4 @@ export default class PokemonsPageComponent implements OnInit {
       });
   }
 
-  // changePage(offset: number): void {
-  //   const nextPage = +this.page() + offset;
-  //   this.router.navigate([], { queryParams: { page: nextPage } });
-  // }
 }

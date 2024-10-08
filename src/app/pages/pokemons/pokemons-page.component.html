@@ -7,6 +7,14 @@
 
 <div class="flex justify-between">
 
-  <button class="mt-2" (click)="loadPOkemons(-1)">Prev</button>
-  <button class="mt-2" (click)="loadPOkemons(+1)">Next</button>
+  <a
+    class="px-4 py-2 mt-2 rounded-md bg-blue-500 hover:bg-blue-600 transition-colors"
+    [class.disabled]="page() === 1"
+    [ariaDisabled]="page() === 1"
+    [routerLink]="['/pokemons/page', page() - 1]"
+  >Prev</a>
+  <a
+    class="px-4 py-2 mt-2 rounded-md bg-blue-500 hover:bg-blue-600 transition-colors"
+    [routerLink]="['/pokemons/page', page() + 1]"
+  >Next</a>
 </div>
