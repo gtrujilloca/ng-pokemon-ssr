@@ -8,7 +8,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-pokemon-card',
   standalone: true,
   imports: [
-    CommonModule,
     RouterLink,
   ],
   templateUrl: './pokemon-card.component.html',

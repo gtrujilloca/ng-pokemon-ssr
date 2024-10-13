@@ -1,10 +1,10 @@
+import { map, Observable } from 'rxjs';
 import { PokemonGateway } from '@/core/models/pokemon/gateway/pokemon-gateway';
 import { PokemonAPIResponse, SinglePokemonApiResponse } from '@/core/models/pokemon/pokemon-api';
 import { SimplePokemon } from '@/core/models/pokemon/simple-pokemon';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '@/../environments/environment';
 import { pokemonMapper, simplePokemonMapper } from '../helpers/maps/pokemon-mapper';
 import { SinglePokemon } from '@/core/models/pokemon/pokemon';
 

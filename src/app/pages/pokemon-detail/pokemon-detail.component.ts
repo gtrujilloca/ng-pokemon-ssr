@@ -33,7 +33,6 @@ export default class PokemonDetailComponent {
   pokemonSrv = inject(PokemonUsecase);
 
   ngOnInit(): void {
-    console.log(this.id());
     this.getPOkemon();
   }
 
