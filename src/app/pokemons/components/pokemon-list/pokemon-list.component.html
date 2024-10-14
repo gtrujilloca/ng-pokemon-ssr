@@ -6,13 +6,13 @@
   }
   } @else {
   @for (pokemon of pokemons(); track pokemon.id) {
-  <app-pokemon-card [pokemon]="pokemon"/>
+  <app-pokemon-card [pokemon]="pokemon" />
+  }
+  @empty {
+  <article class="col-span-5 text-white border-white h-28 flex justify-center items-center">
+    There are no pokemons yet
+  </article>
   }
   }
-  <!-- @empty {
-    <article class="col-span-5 text-white border-white h-28 flex justify-center items-center">
-      There are no pokemons yet
-    </article>
-  } -->
 
 </section>

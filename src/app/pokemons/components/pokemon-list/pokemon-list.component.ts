@@ -11,7 +11,7 @@ import { SimplePokemon } from '@/core/models/pokemon/simple-pokemon';
     CommonModule,
     PokemonCardComponent,
     CardSkeletonComponent
-],
+  ],
   templateUrl: './pokemon-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

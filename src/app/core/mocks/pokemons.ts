@@ -37,6 +37,7 @@ const pokemons = [
     name: "Blastoise",
   }
 ];
+
 export function getPokemons(): SimplePokemon[] {
   return structuredClone(pokemons);
 }
